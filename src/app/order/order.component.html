@@ -1,0 +1,123 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+<div class="row">
+  <div class="col"> <!-- add col-sm-offset-4 to align center-->
+    <h3>Order</h3>
+    <hr>
+    <!-- <h1>HELLO {{name}}</h1> -->
+
+<div class="row">
+  <div class="col-xs-4"> <!-- add col-sm-offset-4 to align center-->
+    <form [formGroup]="orderForm" (ngSubmit)="onSubmit()">
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <i class="material-icons md-18">person</i><label for="name">&nbsp;Name</label>
+              <input type="text" [(ngModel)]="name" id="name" formControlName="name" class="form-control">
+          </div>
+        </div>
+      </div>
+
+      <!-- 
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Favorite food" value="Sushi">
+      </mat-form-field> -->
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <i class="material-icons md-18">time_to_leave</i><label for="polNum">&nbsp;Police Number</label>
+            <input type="text" [(ngModel)]="polNum" id="polNum" formControlName="polNum" class="form-control">
+          </div>
+        </div>
+      </div>
+
+      <!-- OPTIONAL
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" formControlName="email" class="form-control">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="phone">Handphone No.</label>
+            <input type="tel" id="phone" formControlName="phone" class="form-control">
+          </div>
+        </div>
+      </div>
+
+    -->
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <i class="material-icons md-18">event</i><label for="date">&nbsp;Date</label>
+            <input type="date" ngValue="date" [(ngModel)]="date" id="date" formControlName="date" class="form-control" (click)="truer()">
+          </div>
+        </div>
+      </div>
+
+      <mat-progress-spinner *ngIf="showSpinner"
+        class="example-margin"
+        [color]="color"
+        [mode]="mode" >
+      </mat-progress-spinner>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <i class="material-icons md-18">subdirectory_arrow_right</i><label for="timeIn">&nbsp;Check In</label>
+            <select [(ngModel)]="timeIn" id="timeIn" formControlName="timeIn" class="form-control" (click)="timeOutMinSetter(timeIn)">
+              <option style="display:none">
+              <option *ngFor="let availables of removedList" [ngValue]="availables.time">
+                {{ availables.time }}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <i class="material-icons md-18">subdirectory_arrow_left</i><label for="timeOut">&nbsp;Check Out</label>
+            <select [(ngModel)]="timeOut" id="timeOut" formControlName="timeOut" class="form-control">
+              <!--<option disabled selected value> -- select an option -- </option> -->
+              <option style="display:none">
+              <!-- <option *ngFor="let availables of list" [ngValue]="availables.time"> -->
+                <option *ngFor="let availables of timeOutArr" [ngValue]="availables">
+                {{ availables }}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+      
+      <button type="submit" mat-raised-button color="primary" [disabled]="!orderForm.valid">Submit</button> &nbsp;&nbsp;&nbsp;
+      <button type="button" mat-raised-button  (click)="onClear()">Clear</button>
+
+    </form>
+    <!--
+    <ul *ngFor="let order of orders | async">
+      <li>
+        <strong>{{ order.name | uppercase}}</strong>
+        <br>
+        {{order.polNum}}
+      </li>
+    </ul>
+  -->
+  </div>
+</div>
+<br>
+<div *ngIf="success" class="alert alert-success" dismiss-on-timeout="2000">
+    You have <strong>successfully</strong> booked a slot. Please go to the dashboard section to review your order.
+  </div>
+</div>
+</div>

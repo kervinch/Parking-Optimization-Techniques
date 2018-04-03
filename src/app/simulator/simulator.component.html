@@ -1,0 +1,132 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+<div class="row">
+  <div class="col">
+    <h3>Simulator</h3><i>{{ dateNow }}</i>
+    <hr>   
+
+  </div>
+</div>
+<div class="row">
+    <div class="col-xs-12"> <!-- add col-sm-offset-4 to align center-->
+      <form [formGroup]="simulatorForm" (ngSubmit)="onSubmit()">
+
+<div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <i class="material-icons md-18">event</i><label for="date">&nbsp;Date</label>
+        <input type="date" ngValue="date" [(ngModel)]="date" id="date" formControlName="date" class="form-control" >
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="form-group">
+        <i class="material-icons md-18">access_time</i><label for="time">&nbsp;Time</label>
+        <select [(ngModel)]="time" id="time" formControlName="time" class="form-control" disabled>
+            <option style="display:none" value=0>Real-Time</option>
+            <option *ngFor="let times of timeList">
+                {{ times }}
+            </option>
+        </select>
+      </div>
+      </div>
+
+      <div class="col-md-2">
+      <div class="form-group">
+        <i class="material-icons md-18">fast_forward</i><label for="multiplier">&nbsp;Multiplier</label>
+        <select [(ngModel)]="multiplier" id="multiplier" formControlName="multiplier" class="form-control" disabled>
+            <option style="display:none" value="1x">1x</option>
+            <option *ngFor="let opt of multipliers">{{opt}}</option>
+        </select>
+      </div>
+      </div>
+    
+    <div class="col-md-2">
+        <div class="form-group">
+            <label><input type="checkbox" [(ngModel)]="defragmented" formControlName="defragmented" class="pad2" checked>Defragmented?</label>
+        </div>
+    </div>
+    
+<!--
+    <div class="row">
+    <div class="col-md-1">
+      <div class="form-group">
+        <label for="defragmented">&nbsp;Defragmented?</label>
+        <input type="checkbox" ngValue="defragmented" [(ngModel)]="defragmented" id="defragmented" formControlName="defragmented" class="form-control" value="true">
+      </div>
+    </div> -->
+      
+    <div class="col-md-1">
+        <button type="submit" mat-raised-button color="primary" [disabled]="!simulatorForm.valid" class="pad">Simulate</button> &nbsp;&nbsp;&nbsp;
+    </div>
+
+  </div>
+        </form>
+    </div>
+</div>
+
+<hr>
+<br>
+<p>This simulation is based on <i>{{defragmented ? 'defragmented' : ''}}</i> slots from date: {{ defragDate | date:'fullDate' }} . Please defrag slots in Dashboard if you haven't already or if you're seeing a blank table below. Slot is available from 10:00 to 19:00, if real time is outside this range, simulation is gonna show data for 19:00.</p>
+<br>
+
+<!-- new -->
+<div class="container">
+    <div class="row">
+
+      <div class="col-sm-2">
+    <table class="table table-bordered">
+        <th class="mid">1</th>
+         <tr *ngFor="let x of coll | async | filterBy: ['data.pos']: 1 | filterBy: ['data.time']: hoursNow " class="mid">
+            <span matTooltip="{{ x.data.time }}">   {{ x.data.polNum }}   </span>
+        </tr>
+    </table>
+    </div>
+
+    <div class="col-sm-2">
+    <table class="table table-bordered">
+        <th class="mid">2</th>
+        <tr *ngFor="let x of coll | async | filterBy: ['data.pos']: 2 | filterBy: ['data.time']: hoursNow " class="mid">
+            <span matTooltip="{{ x.data.time }}">   {{ x.data.polNum }}   </span>
+        </tr>
+    </table>
+    </div>
+
+    <div class="col-sm-2">
+    <table class="table table-bordered">
+        <th class="mid">3</th>
+        <tr *ngFor="let x of coll | async | filterBy: ['data.pos']: 3 | filterBy: ['data.time']: hoursNow " class="mid">
+            <span matTooltip="{{ x.data.time }}">   {{ x.data.polNum }}   </span>
+        </tr>
+    </table>
+    </div>
+
+    <div class="col-sm-2">
+    <table class="table table-bordered">
+        <th class="mid">4</th>
+        <tr *ngFor="let x of coll | async | filterBy: ['data.pos']: 4 | filterBy: ['data.time']: hoursNow " class="mid">
+            <span matTooltip="{{ x.data.time }}">   {{ x.data.polNum }}   </span>
+        </tr>
+    </table>
+    </div>
+
+    <div class="col-sm-2">
+    <table class="table table-bordered">
+        <th class="mid">5</th>
+        <tr *ngFor="let x of coll | async | filterBy: ['data.pos']: 5 | filterBy: ['data.time']: hoursNow " class="mid">
+            <span matTooltip="{{ x.data.time }}">   {{ x.data.polNum }}   </span>
+        </tr>
+    </table>
+    </div>
+
+    <div class="col-sm-2">
+    <table class="table table-bordered">
+        <th class="mid">6</th>
+        <tr *ngFor="let x of coll | async | filterBy: ['data.pos']: 6 | filterBy: ['data.time']: hoursNow " class="mid">
+            <span matTooltip="{{ x.data.time }}">   {{ x.data.polNum }}   </span>
+        </tr>
+    </table>
+    </div>
+
+  </div>
+</div>

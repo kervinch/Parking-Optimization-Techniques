@@ -1,0 +1,128 @@
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-2">
+          <table class="table table-bordered table-hover">
+              <tbody> <!-- A1 -->
+                <tr><td>19:00</td></tr>
+                <tr><td>18:00</td></tr>
+                <tr><td>17:00</td></tr>
+                <tr><td>16:00</td></tr>
+                <tr><td>15:00</td></tr>
+                <tr><td>14:00</td></tr>
+                <tr><td>13:00</td></tr>
+                <tr><td>12:00</td></tr>
+                <tr><td>11:00<span class="CellComment">Here is a comment</span></td></tr>
+                <tr><td>10:00</td></tr>
+              </tbody>
+            </table>
+            <div class="text-center"><b>A1</b></div>
+      </div>
+
+      <div class="col-sm-2"> <!-- A2 -->
+          <table class="table table-bordered table-hover">
+              <tbody>
+                <tr><td [style.background-color]="tester < 9 ? 'crimson' : 'white'">19:00<div class="bg-danger CellWithComment" *ngIf="tester < 9"><span class="CellComment" *ngIf="tester < 9">UNKNOWN</span></div></td></tr>
+                <tr><td>18:00</td></tr>
+                <tr><td>17:00</td></tr>
+                <tr><td>16:00</td></tr>
+                <tr><td class="bg-danger CellWithComment">15:00<span class="CellComment">B 2812 KER</span></td></tr>
+                <tr><td class="bg-danger">14:00</td></tr>
+                <tr><td>13:00</td></tr>
+                <tr><td>12:00</td></tr>
+                <tr><td>11:00</td></tr>
+                <tr><td>10:00</td></tr>
+              </tbody>
+            </table>
+            <div class="text-center"><b>A2</b></div>
+      </div>
+
+      <div class="col-sm-2"> <!-- A3 -->
+          <table class="table table-bordered table-hover">
+              <tbody>
+                <tr><td>19:00</td></tr>
+                <tr><td>18:00</td></tr>
+                <tr><td>17:00</td></tr>
+                <tr><td>16:00</td></tr>
+                <tr><td>15:00</td></tr>
+                <tr><td>14:00</td></tr>
+                <tr><td>13:00</td></tr>
+                <tr><td>12:00</td></tr>
+                <tr><td>11:00</td></tr>
+                <tr><td>10:00</td></tr>
+              </tbody>
+            </table>
+            <div class="text-center"><b>A3</b></div>
+      </div>
+
+      <div class="col-sm-2"> <!-- A4 -->
+          <table class="table table-bordered table-hover">
+              <tbody>
+                <tr><td>19:00</td></tr>
+                <tr><td>18:00</td></tr>
+                <tr><td>17:00</td></tr>
+                <tr><td>16:00</td></tr>
+                <tr><td>15:00</td></tr>
+                <tr><td>14:00</td></tr>
+                <tr><td>13:00</td></tr>
+                <tr><td>12:00</td></tr>
+                <tr><td>11:00</td></tr>
+                <tr><td>10:00</td></tr>
+              </tbody>
+            </table>
+            <div class="text-center"><b>A4</b></div>
+      </div>
+
+      <div class="col-sm-2"> <!-- A5 -->
+          <table class="table table-bordered table-hover">
+              <tbody>
+                <tr><td>19:00</td></tr>
+                <tr><td>18:00</td></tr>
+                <tr><td>17:00</td></tr>
+                <tr><td>16:00</td></tr>
+                <tr><td>15:00</td></tr>
+                <tr><td>14:00</td></tr>
+                <tr><td>13:00</td></tr>
+                <tr><td>12:00</td></tr>
+                <tr><td>11:00</td></tr>
+                <tr><td>10:00</td></tr>
+              </tbody>
+            </table>
+            <div class="text-center"><b>A5</b></div>
+      </div>
+
+      <div class="col-sm-2"> <!-- A6 -->
+          <table class="table table-bordered table-hover">
+              <tbody>
+                <tr><td>19:00</td></tr>
+                <tr><td>18:00</td></tr>
+                <tr><td>17:00</td></tr>
+                <tr><td>16:00</td></tr>
+                <tr><td>15:00</td></tr>
+                <tr><td>14:00</td></tr>
+                <tr><td>13:00</td></tr>
+                <tr><td>12:00</td></tr>
+                <tr><td>11:00</td></tr>
+                <tr><td>10:00</td></tr>
+              </tbody>
+            </table>
+            <div class="text-center"><b>A6</b></div>
+      </div>
+      <ul *ngFor="let order of orders | async">
+        <li>
+          <strong>{{ order.name | uppercase}}</strong>
+          <br>
+          {{order.polNum}}
+        </li>
+      </ul>
+      <hr>
+      <ul *ngFor="let la of list">
+        <li>
+          <strong>{{ la.name | uppercase}}</strong>
+          <br>
+          {{la.polNum}}
+          <br>
+          {{la.isAvailable}}
+        </li>
+      </ul>
+    </div>
+  </div>

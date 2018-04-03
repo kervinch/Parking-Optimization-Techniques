@@ -1,0 +1,41 @@
+p {
+    text-align: center;
+    font-weight: bold;
+}
+
+.mid {
+    text-align: center;
+}
+
+.proper {
+    text-align: left;
+}
+
+.pad {
+    margin-top: 33px;
+}
+
+.pad2 {
+    margin-top: 42px;
+}
+
+.right {
+    text-align: right;
+}
+
+.botPad {
+    margin-bottom: 42px;
+}
+
+.slot-list {
+    width: 50%;
+}
+
+.example-margin {
+  margin: 0 10px;
+}
+
+.example-header {
+    min-height: 64px;
+    padding: 8px 24px 0;
+  }

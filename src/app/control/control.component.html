@@ -1,0 +1,154 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+<div class="row">
+  <div class="col">
+    <h3>Analytics</h3><!-- <i>{{ dateNow }}</i> -->
+    <hr>   
+
+  </div>
+</div>
+
+  <h4>Random Data</h4>
+<div class="example-container mat-elevation-z8">
+    <div class="example-header">
+        <mat-form-field>
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+        </mat-form-field>
+      </div>
+  <mat-table #table [dataSource]="dataSource" matSort>
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="polNum">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Police Number </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.polNum}} </mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="timeIn">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Time In </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.timeIn}} </mat-cell>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="timeOut">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Time Out </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.timeOut}} </mat-cell>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="duration">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Duration </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.duration}} </mat-cell>
+    </ng-container>
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <mat-paginator #paginator
+                 [pageSize]="10"
+                 [pageSizeOptions]="[5, 10, 20, 50, 100, 250]">
+  </mat-paginator>
+  </div>
+  <p><i>*Total duration of all data is: {{ dataTotalTimeSlot }}</i></p>
+
+  <br>
+  <h4>Run Algorithms &nbsp;&nbsp;&nbsp;</h4>
+    
+      <mat-checkbox class="example-margin" [(ngModel)]="checkboxFirstfit">First-Fit</mat-checkbox>
+      <mat-checkbox class="example-margin" [(ngModel)]="checkboxR1">R1</mat-checkbox>
+      <mat-checkbox class="example-margin" [(ngModel)]="checkboxR2">R2</mat-checkbox>
+      <mat-checkbox class="example-margin" [(ngModel)]="checkboxR3">R3</mat-checkbox>
+      <mat-checkbox class="example-margin" [(ngModel)]="checkboxR1M">R1-Modified</mat-checkbox>
+      <mat-checkbox class="example-margin" [(ngModel)]="checkboxR1M2">R1-Modified-2</mat-checkbox>
+      <mat-checkbox class="example-margin" [(ngModel)]="checkboxR1M3">R1-Modified-3</mat-checkbox>
+      <mat-checkbox class="example-margin" [(ngModel)]="checkboxR2M">R2-Modified</mat-checkbox>
+    
+      <span><button class="float-right" mat-raised-button color="primary" (click)="triggerAll()" onClick="this.disabled=true">Run</button></span>
+  <br>
+  <br>
+  
+  <br>
+  <h4>Result Table</h4>
+  <div class="example-container mat-elevation-z8">
+    <mat-table #table2 [dataSource]="dataSource2">
+  
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+  
+      <!-- Position Column -->
+      <ng-container matColumnDef="algorithm">
+        <mat-header-cell *matHeaderCellDef> Algorithm </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.algorithm}} </mat-cell>
+      </ng-container>
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="timeSlot">
+        <mat-header-cell *matHeaderCellDef> Time Slots </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.timeSlot}} </mat-cell>
+      </ng-container>
+  
+      <!-- Weight Column -->
+      <ng-container matColumnDef="orderSlot">
+        <mat-header-cell *matHeaderCellDef> Order Slots </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.orderSlot}} </mat-cell>
+      </ng-container>
+  
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="performance">
+        <mat-header-cell *matHeaderCellDef> Performance (ms) </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.performance}} </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns2"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns2;"></mat-row>
+    </mat-table>
+  </div>
+  <br>
+  <h4>Result CSV</h4>
+  <p>{{ this.timeslotFirstfit }},{{ this.timeslotR1 }},{{ this.timeslotR2 }},{{ this.timeslotR3 }},{{ this.timeslotR1Modified }},{{ this.timeslotR1Modified2 }},{{ this.timeslotR1Modified3 }},{{ this.timeslotR2Modified }},{{ dataTotalTimeSlot }}</p><br>
+  <p>{{ this.orderslotFirstfit }},{{ this.orderslotR1 }},{{ this.orderslotR2 }},{{ this.orderslotR3 }},{{ this.orderslotR1Modified }},{{ this.orderslotR1Modified2 }},{{ this.orderslotR1Modified3 }},{{ this.orderslotR2Modified }}</p><br>
+  <p>{{ this.performanceFirstfit }},{{ this.performanceR1 }},{{ this.performanceR2 }},{{ this.performanceR3 }},{{ this.performanceR1Modified }},{{ this.performanceR1Modified2 }},{{ this.performanceR1Modified3 }},{{ this.performanceR2Modified }}</p><br>
+
+  <!-- Text form of displaying random data
+<div>
+  <div class="row">
+    <div class="col-sm-6">
+         <!-- <span matTooltip="DEVELOPMENT PURPOSE"><button mat-raised-button color="primary" (click)="createSlots()" >Create Slots</button></span> 
+        <p *ngFor="let x of data">
+          {{ x | pairs}}
+        </p>
+      </div>
+  </div>
+</div> -->
+<br>
+<br>
+<h4>Bitmap Graphics</h4><form [formGroup]="controlForm">
+  <mat-form-field>
+    <mat-select [(value)]="selected" formControlName="selectedAlgorithm" placeholder="Algorithm">
+      <mat-option value='firstfit'>First-Fit</mat-option>
+      <mat-option value="R1">R1</mat-option>
+      <mat-option value="R2">R2</mat-option>
+      <mat-option value="R3">R3</mat-option>
+      <mat-option value="R1Modified">R1-Modified</mat-option>
+      <mat-option value="R1Modified2">R1-Modified-2</mat-option>
+      <mat-option value="R1Modified3">R1-Modified-3</mat-option>
+      <mat-option value="R2Modified">R2-Modified</mat-option>
+    </mat-select>
+  </mat-form-field>
+</form>
+
+<br>
+<table><!--  <class="table table-bordered"> -->
+    <th  *ngFor="let a of firstRow">
+      {{ a }}&nbsp;
+    </th>
+  <tr *ngFor="let b of numberOfPos; let x = index">
+      <th style="width:100px;">
+          Slot {{ b }}
+      </th>
+      <td *ngFor="let c of selectedDisplay | filterBy: ['data.pos']: b: [strict]">
+        <span matTooltip="{{ c.data.polNum }}">{{ c.data.isAvailable | toAlt }}&nbsp;</span>
+      </td>
+  </tr>
+</table>
+<br>

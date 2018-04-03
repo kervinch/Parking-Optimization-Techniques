@@ -1,0 +1,86 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+<div class="row">
+  <div class="col">
+    <h3>Cancels</h3>
+    <hr>   
+
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <p>cancel by police number</p>
+    <form [formGroup]="cancelForm" (ngSubmit)="onSubmit()">
+
+      <div class="row">
+        <div class="col-xs-4">
+          <div class="form-group">
+            <i class="material-icons md-18">event</i><label for="date">&nbsp;Date</label>
+            <input type="date" ngValue="date" [(ngModel)]="date" id="date" formControlName="date" class="form-control">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-4">
+          <div class="form-group">
+            <i class="material-icons md-18">time_to_leave</i><label for="polNum">&nbsp;Police Number</label>
+            <input type="text" [(ngModel)]="xPolNum" id="polNum" formControlName="polNum" class="form-control">
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" mat-raised-button color="primary" [disabled]="!cancelForm.valid">Submit</button> &nbsp;&nbsp;&nbsp;
+      <button type="button" mat-raised-button (click)="onClear()">Clear</button>
+
+    </form>
+  </div>
+</div>
+
+<br>
+
+<div class="row">
+  <div class="col-xs-12">
+    <mat-table #tableC [dataSource]="dataSource">
+
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+  
+      <!-- Position Column -->
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+      </ng-container>
+      
+      <ng-container matColumnDef="date">
+        <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.date | date: yMMMMd}} </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="pos">
+        <mat-header-cell *matHeaderCellDef> Pos </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.pos}} </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="time">
+        <mat-header-cell *matHeaderCellDef> Time </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.time}} </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="isAvailable">
+        <mat-header-cell *matHeaderCellDef> isAvailable </mat-header-cell>
+        <mat-cell *matCellDef="let element" > {{element.isAvailable}} </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="polNum">
+        <mat-header-cell *matHeaderCellDef> Police No. </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.polNum}} </mat-cell>
+      </ng-container>
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </div>
+</div>
+
