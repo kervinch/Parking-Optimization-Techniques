@@ -2,6 +2,8 @@
 
 This project is hosted using Firebase Hosting at: https://thesis-app-e5599.firebaseapp.com/
 
+Only the Analytics part of the web app is used for thesis. The other components are just an addition and isn't core.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.5.
 
 ## Development server
